@@ -4,7 +4,7 @@ import Axios from "axios";
 import { PokeCard } from "./PokeCard";
 Axios.defaults.baseURL = "https://pokeapi.co/api/v2/";
 
-export const PokecardList = ({ userSearchInput }) => {
+export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [pokemonCrad, setPokemonCard] = useState([]);
   const [preloader, setPreloader] = useState(false);
@@ -38,15 +38,11 @@ export const PokecardList = ({ userSearchInput }) => {
   setTimeout(() => {
     setPreloader(true);
   }, 2000);
-
   return (
     <CardListContainer>
       {preloader === true
         ? pokemonCrad
             .filter((value) => {
-              console.log(value.id);
-              console.log(userSearchInput);
-
               if (userSearchInput === "") {
                 return value;
               } else if (
@@ -54,7 +50,6 @@ export const PokecardList = ({ userSearchInput }) => {
               ) {
                 return value;
               } else if (value.id.toString().includes(userSearchInput)) {
-                console.log(value.id);
                 return value;
               }
               return console.log(value);

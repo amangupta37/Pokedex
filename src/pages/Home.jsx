@@ -5,12 +5,20 @@ import { PokecardList } from "../layout/PokecardList";
 export const Home = () => {
   const [userSerchInput, setuserSerchInput] = useState("");
 
+  const [filterPokemonType, setfilterPokemonType] = useState("");
+
   console.log(userSerchInput);
 
   return (
     <>
-      <Header setuserSerchInput={setuserSerchInput} />
-      <PokecardList userSearchInput={userSerchInput} />
+      <Header
+        setuserSerchInput={setuserSerchInput}
+        setfilterPokemonType={setfilterPokemonType}
+      />
+      <PokecardList
+        userSearchInput={userSerchInput}
+        filterPokemonType={filterPokemonType}
+      />
     </>
   );
 };
