@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardListContainer } from "../styles/pokeCardListStyle";
 import Axios from "axios";
 import { PokeCard } from "./PokeCard";
+import { Preloader } from "../components/Preloader";
 Axios.defaults.baseURL = "https://pokeapi.co/api/v2/";
 
 export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
@@ -37,27 +38,29 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
 
   setTimeout(() => {
     setPreloader(true);
-  }, 2000);
+  }, 3000);
   return (
     <CardListContainer>
-      {preloader === true
-        ? pokemonCrad
-            .filter((value) => {
-              if (userSearchInput === "") {
-                return value;
-              } else if (
-                value.name.toLowerCase().includes(userSearchInput.toLowerCase())
-              ) {
-                return value;
-              } else if (value.id.toString().includes(userSearchInput)) {
-                return value;
-              }
-              return console.log(value);
-            })
-            .map((value, index) => {
-              return <PokeCard key={index} pokemonDetails={value} />;
-            })
-        : "loading"}
+      {preloader === true ? (
+        pokemonCrad
+          .filter((value) => {
+            if (userSearchInput === "") {
+              return value;
+            } else if (
+              value.name.toLowerCase().includes(userSearchInput.toLowerCase())
+            ) {
+              return value;
+            } else if (value.id.toString().includes(userSearchInput)) {
+              return value;
+            }
+            return console.log(value);
+          })
+          .map((value, index) => {
+            return <PokeCard key={index} pokemonDetails={value} />;
+          })
+      ) : (
+        <Preloader />
+      )}
     </CardListContainer>
   );
 };
