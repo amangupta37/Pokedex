@@ -42,8 +42,8 @@ export const PokecardList = () => {
   return (
     <CardListContainer>
       {preloader === true
-        ? pokemonCrad.map((value) => {
-            return <PokeCard pokemonDetails={value} />;
+        ? pokemonCrad.map((value, index) => {
+            return <PokeCard key={index} pokemonDetails={value} />;
           })
         : "loading"}
     </CardListContainer>
