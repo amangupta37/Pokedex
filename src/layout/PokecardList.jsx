@@ -4,7 +4,7 @@ import Axios from "axios";
 import { PokeCard } from "./PokeCard";
 Axios.defaults.baseURL = "https://pokeapi.co/api/v2/";
 
-export const PokecardList = () => {
+export const PokecardList = ({ userSearchInput }) => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [pokemonCrad, setPokemonCard] = useState([]);
   const [preloader, setPreloader] = useState(false);
@@ -42,9 +42,26 @@ export const PokecardList = () => {
   return (
     <CardListContainer>
       {preloader === true
-        ? pokemonCrad.map((value, index) => {
-            return <PokeCard key={index} pokemonDetails={value} />;
-          })
+        ? pokemonCrad
+            .filter((value) => {
+              console.log(value.id);
+              console.log(userSearchInput);
+
+              if (userSearchInput === "") {
+                return value;
+              } else if (
+                value.name.toLowerCase().includes(userSearchInput.toLowerCase())
+              ) {
+                return value;
+              } else if (value.id.toString().includes(userSearchInput)) {
+                console.log(value.id);
+                return value;
+              }
+              return console.log(value);
+            })
+            .map((value, index) => {
+              return <PokeCard key={index} pokemonDetails={value} />;
+            })
         : "loading"}
     </CardListContainer>
   );

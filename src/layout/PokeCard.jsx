@@ -22,7 +22,7 @@ export const PokeCard = ({ pokemonDetails }) => {
 
   return (
     <>
-      <CardContainer>
+      <CardContainer onClick={showPokeStats}>
         <Top>
           <PokeName>
             <Id>#{pokemonDetails.id}</Id>
