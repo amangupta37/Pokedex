@@ -16,4 +16,13 @@ export const Input = styled.input`
   outline: none;
   font-size: 1.2rem;
   color: yellow;
+  @media only screen and (min-width: 0px) and (max-width: 380px) {
+    width: 90%;
+  }
+  @media only screen and (min-width: 390px) and (max-width: 610px) {
+    width: 90%;
+  }
+  @media only screen and (min-width: 611px) and (max-width: 900px) {
+    width: 70%;
+  }
 `;
