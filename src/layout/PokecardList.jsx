@@ -10,12 +10,18 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
   const [allPokemonCharacteristics, setAllPokemonCharacteristics] = useState(
     []
   );
+
+  // const [error, setError] = useState("");
   const [preloader, setPreloader] = useState(false);
 
   const fetchAllPokemonList = async () => {
-    await Axios.get("/pokemon?limit=100&offset=200").then((res) => {
-      return setAllPokemon(res.data.results);
-    });
+    await Axios.get("/pokemon?limit=100&offset=200")
+      .then((res) => {
+        return setAllPokemon(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const getAllPokemonCharacteristics = (allPokemonList) => {
@@ -55,7 +61,6 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
             } else if (value.id.toString().includes(userSearchInput)) {
               return value;
             }
-            return console.log("true");
           })
           .filter((value) => {
             if (filterPokemonType === "" || filterPokemonType === "All") {
@@ -67,7 +72,6 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
             ) {
               return value;
             }
-            return console.log("true");
           })
           .map((value, index) => {
             return <PokeCard key={index} pokemonDetails={value} />;
