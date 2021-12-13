@@ -7,8 +7,6 @@ export const Home = () => {
 
   const [filterPokemonType, setfilterPokemonType] = useState("");
 
-  console.log(userSerchInput);
-
   return (
     <>
       <Header
