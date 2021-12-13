@@ -29,13 +29,16 @@ export const Filter = ({ setfilterPokemonType }) => {
     },
   ];
 
-  const [filterType, setFilterType] = useState("Pokemon Types");
+  const [filterType, setFilterType] = useState("");
   const userFilterInput = (values) => {
     setFilterType(values);
     setfilterPokemonType(values);
   };
   return (
-    <DropdownButton id="dropdown-basic-button" title={filterType}>
+    <DropdownButton
+      id="dropdown-basic-button"
+      title={`Pokemon Type : ${filterType}`}
+    >
       {PokemonType.map((val, index) => {
         return (
           <Dropdown.Item key={index} onClick={() => userFilterInput(val.type)}>
