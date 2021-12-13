@@ -7,7 +7,9 @@ Axios.defaults.baseURL = "https://pokeapi.co/api/v2/";
 
 export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
   const [allPokemon, setAllPokemon] = useState([]);
-  const [pokemonCrad, setPokemonCard] = useState([]);
+  const [allPokemonCharacteristics, setAllPokemonCharacteristics] = useState(
+    []
+  );
   const [preloader, setPreloader] = useState(false);
 
   const fetchAllPokemonList = async () => {
@@ -16,14 +18,14 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
     });
   };
 
-  const pokemonList = (datap) => {
-    const arr = [];
-    datap.map((v) => {
-      return Axios.get(v.url).then((res) => {
-        return arr.push(res.data);
+  const getAllPokemonCharacteristics = (allPokemonList) => {
+    const storePokemonCharacteristics = [];
+    allPokemonList.map((value) => {
+      return Axios.get(value.url).then((res) => {
+        return storePokemonCharacteristics.push(res.data);
       });
     });
-    setPokemonCard(arr);
+    setAllPokemonCharacteristics(storePokemonCharacteristics);
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
 
   useEffect(() => {
     if (allPokemon) {
-      pokemonList(allPokemon);
+      getAllPokemonCharacteristics(allPokemon);
     }
   }, [allPokemon]);
 
@@ -42,7 +44,7 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
   return (
     <CardListContainer>
       {preloader === true ? (
-        pokemonCrad
+        allPokemonCharacteristics
           .filter((value) => {
             if (userSearchInput === "") {
               return value;
