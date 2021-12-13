@@ -55,7 +55,6 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
             } else if (value.id.toString().includes(userSearchInput)) {
               return value;
             }
-
             return console.log("true");
           })
           .filter((value) => {

@@ -42,7 +42,6 @@ export const Bottom = styled.section`
 
 export const PokeName = styled.section`
   width: 50%;
-  ${"" /* background: blue; */}
   display: grid;
   place-items: center;
   padding: 0.5rem;
@@ -63,7 +62,6 @@ export const Id = styled.h1`
 export const PokeImage = styled.section`
   width: 300px;
   height: 200px;
-  ${"" /* background: yellow; */}
   display: grid;
   place-items: center;
   padding: 0.5rem;
