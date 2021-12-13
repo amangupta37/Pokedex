@@ -4,6 +4,9 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 export const Filter = ({ setfilterPokemonType }) => {
   const PokemonType = [
     {
+      type: "All",
+    },
+    {
       type: "Psychic",
     },
     {
@@ -28,7 +31,6 @@ export const Filter = ({ setfilterPokemonType }) => {
 
   const [filterType, setFilterType] = useState("Pokemon Types");
   const userFilterInput = (values) => {
-    console.log("this is", values);
     setFilterType(values);
     setfilterPokemonType(values);
   };
