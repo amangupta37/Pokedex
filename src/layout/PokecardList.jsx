@@ -53,6 +53,8 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
             } else if (value.id.toString().includes(userSearchInput)) {
               return value;
             }
+
+            return console.log("true");
           })
           .filter((value) => {
             if (filterPokemonType === "" || filterPokemonType === "All") {
@@ -64,6 +66,7 @@ export const PokecardList = ({ userSearchInput, filterPokemonType }) => {
             ) {
               return value;
             }
+            return console.log("true");
           })
           .map((value, index) => {
             return <PokeCard key={index} pokemonDetails={value} />;
